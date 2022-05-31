@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - LScustoms{% endblock %}
+
+{% block content %}
+
+    <hr>
+        <h1>Mon compte</h1>
+        Bienvenu <strong>{{ app.user.firstname }}</strong> dans votre compte.
+    <hr>
+
+    <a href="{{ path('app_account_password') }}">Modifier mon mot de passe</a>
+
+{% endblock %}
