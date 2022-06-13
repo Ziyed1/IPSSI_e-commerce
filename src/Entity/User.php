@@ -124,4 +124,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+//Pour rendre l'affichage plus parlant lors de l'appel à easyAdmin
+    public function __toString(): string
+    {
+        return $this->firstname.' '.$this->lastname;
+    }
+
 }
