@@ -3,21 +3,47 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class CartController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+
     #[Route('/mon-panier', name: 'app_cart')]
 
     public function index(Cart $cart): Response
     {
+        $cartComplete = [];
+        
+        //pour eviter l'erreur dans le cas ou le panier est vide 
+        if($cart->get()){
+            //pour recuperer toutes les infos liée au produit
+        foreach($cart->get() as $id => $quantity){
+            $cartComplete [] = [
+                'product' => $this->entityManager->getRepository(Product::class)->findOneByid($id),
+                'quantity' => $quantity
+            ];
+        }
 
-        dd($cart->get());
-        return $this->render('cart/index.html.twig');
+        }
+        
+        return $this->render('cart/index.html.twig',[
+            'cart' => $cartComplete
+
+            ]);
     }
 
 
@@ -32,7 +58,7 @@ class CartController extends AbstractController
     }
 
 
-
+    //supprime tout le panier 
     #[Route('/cart/remove', name: 'app_remove_my_cart')]
 
     public function remove(Cart $cart): Response
@@ -41,5 +67,27 @@ class CartController extends AbstractController
         $cart->remove();
 
         return $this->redirectToRoute('app_products');
+    }
+
+    //supprime un article du panier
+    #[Route('/cart/delete/{id}', name: 'app_delete_to_cart')]
+
+    public function delete(Cart $cart, $id): Response
+    {
+
+        $cart->delete($id);
+
+        return $this->redirectToRoute('app_cart');
+    }
+
+
+    #[Route('/cart/decrease/{id}', name: 'app_decrease_to_cart')]
+
+    public function decrease(Cart $cart, $id): Response
+    {
+
+        $cart->decrease($id);
+
+        return $this->redirectToRoute('app_cart');
     }
 }
