@@ -8,40 +8,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
+
 
 
 class CartController extends AbstractController
 {
 
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
 
 
     #[Route('/mon-panier', name: 'app_cart')]
 
     public function index(Cart $cart): Response
     {
-        $cartComplete = [];
-        
-        //pour eviter l'erreur dans le cas ou le panier est vide 
-        if($cart->get()){
-            //pour recuperer toutes les infos liée au produit
-        foreach($cart->get() as $id => $quantity){
-            $cartComplete [] = [
-                'product' => $this->entityManager->getRepository(Product::class)->findOneByid($id),
-                'quantity' => $quantity
-            ];
-        }
 
-        }
         
         return $this->render('cart/index.html.twig',[
-            'cart' => $cartComplete
+            'cart' => $cart->getFull()
 
             ]);
     }
