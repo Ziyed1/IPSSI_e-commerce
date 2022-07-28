@@ -46,7 +46,7 @@ Retrouvez l'ensemble des produits que vous avez ajouté au panier
             <td>{{ ((product.product.price * product.quantity)/ 100)| number_format(2) }} €</td>
             <td>
             <a href="{{ path('app_delete_to_cart', {'id' : product.product.id }) }}">
-            <img src="{{ asset('assets/img/trash.png') }}" height="35px" alt="supprimer produit">
+                <img src="{{ asset('assets/img/trash.png') }}" height="35px" alt="supprimer produit">
             </a>
             </td>
         </tr>
