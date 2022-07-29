@@ -138,6 +138,17 @@ class Order
         return $this;
     }
 
+    public function getTotal ()
+    {
+        $total = null;
+
+        foreach ($this->getOrderDetails()->getValues() as $product) {
+            $total = $total + ($product->getPrice() * $product->getQuantity());
+        }
+
+        return $total;
+    }
+
     public function isIsPaid(): ?bool
     {
         return $this->isPaid;
