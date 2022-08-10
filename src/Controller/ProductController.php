@@ -30,6 +30,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            //Requête SQL 'findWithSearch()' pour cibler les produits avec l'ORM doctrine
            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
         } else {
             //Requête SQL 'findAll()' pour récupérer tous les produits avec l'ORM doctrine
@@ -42,7 +43,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    //Ajout d'accollade dans route pour la prise en compte de la valeur dynamique de la route
+    //Ajout d'accollade dans la route pour la prise en compte de la valeur dynamique
     #[Route('/produit/{slug}', name: 'app_product')]
     public function show($slug): Response
     {

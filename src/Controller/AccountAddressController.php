@@ -40,6 +40,7 @@ class AccountAddressController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            //Lier une adresse à un utilisateur
             $address->setUser($this->getUser());
 
             /*Fige et envoie la donnée address*/

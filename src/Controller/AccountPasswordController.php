@@ -24,6 +24,7 @@ class AccountPasswordController extends AbstractController
     {
         $notification = null;
 
+        //Récupération de l'utilisateur courant
         $user = $this->getUser();
 
         $form = $this->createForm(ChangePasswordType::class, $user);
