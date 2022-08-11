@@ -31,4 +31,5 @@ class TwigEventSubscriber implements EventSubscriberInterface
             'kernel.controller' => 'onKernelController',
         ];
     }
+
 }
