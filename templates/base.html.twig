@@ -49,7 +49,7 @@
                 </li>
                 {% for page in pages %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_page', { 'id' : page.id }) }}">{{ page.Title }}</a>
+                        <a class="nav-link" href="{{ path('app_page', { 'id' : page.id }) }}">{{ page.pagetitle }}</a>
                     </li>
                 {% endfor %}
             </ul>
