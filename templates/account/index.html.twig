@@ -5,11 +5,11 @@
 {% block content %}
 
     <hr>
-        <h1>Mon compte</h1>
-        {% if is_granted('ROLE_ADMIN') %}
-            <small><a href="/admin">Accéder au Back Office</a></small><br>
-        {% endif %}
-        Bienvenu <strong>{{ app.user.firstname }}</strong> dans votre compte.
+    <h1>Mon compte</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <small><a href="/admin">Accéder au Back Office</a></small><br>
+    {% endif %}
+    Bienvenu <strong>{{ app.user.firstname }}</strong> dans votre compte.
     <hr>
 
 

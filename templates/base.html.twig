@@ -11,9 +11,9 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/LScustoms.css') }}">
 
-{% block javascript %}
+    {% block javascript %}
 
-{% endblock %}
+    {% endblock %}
 
     <style>
         .bd-placeholder-img {
@@ -82,17 +82,17 @@
             </ol>
             <div class="carousel-inner">
                 {% for key,header in headers %}
-                <div class="carousel-item {% if key == 0 %}active{% endif %}" style="background: url('/uploads/{{ header.illustration }}');background-size: cover;background-position: center">
-                    <div class="container">
-                        <div class="carousel-caption text-left">
-                            <h1>{{ header.title }}</h1>
-                            <p>{{ header.content }}</p>
-                            <p><a class="btn btn-lg btn-info" href="{{ header.btnUrl }}" role="button">{{ header.btnTitle }}</a></p>
+                    <div class="carousel-item {% if key == 0 %}active{% endif %}" style="background: url('/uploads/{{ header.illustration }}');background-size: cover;background-position: center">
+                        <div class="container">
+                            <div class="carousel-caption text-left">
+                                <h1>{{ header.title }}</h1>
+                                <p>{{ header.content }}</p>
+                                <p><a class="btn btn-lg btn-info" href="{{ header.btnUrl }}" role="button">{{ header.btnTitle }}</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
-                </div>
+            </div>
 
             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -129,7 +129,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
 </body>
-        {% block script %}
-        
-        {% endblock %}
+{% block script %}
+
+{% endblock %}
 </html>
